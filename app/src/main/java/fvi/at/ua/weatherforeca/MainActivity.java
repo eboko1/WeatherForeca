@@ -1,17 +1,25 @@
 package fvi.at.ua.weatherforeca;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-     TextView weather_dataTextView;
+
+    TextView wDataTextView;
+    ProgressBar wProgresBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        wDataTextView = (TextView)findViewById(R.id.tv_weather_data);
+        wProgresBar = (ProgressBar)findViewById(R.id.progressBar);
 
-        weather_dataTextView = (TextView)findViewById(R.id.tv_weather_data);
+        loaderWeatherData();
 
         String[] data =  {
                 "Today, May 17 - Clear - 17°C / 15°C",
@@ -29,9 +37,34 @@ public class MainActivity extends AppCompatActivity {
                 "Sun, May 29 - Apocalypse - 16°C / 8°C",
                 "Mon, May 30 - Post Apocalypse - 15°C / 10°C",
         };
+    }
 
-        for(String nData: data){
-            weather_dataTextView.append(nData+"\n\n\n");
+    private void loaderWeatherData(){
+       new FetchWeatherTask().execute();
+    }
+
+    public class FetchWeatherTask extends AsyncTask<String, Void, String[]>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            wProgresBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected String[] doInBackground(String... params) {
+            return new String[0];
+        }
+
+        @Override
+        protected void onPostExecute(String[] strings) {
+            wProgresBar.setVisibility(View.INVISIBLE);
+
+            if(strings != null){
+                for(String weatherStrings: strings){
+                    wDataTextView.append(weatherStrings + "\n\n\n");
+                }
+            }
         }
     }
 }

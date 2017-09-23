@@ -1,4 +1,4 @@
-package fvi.at.ua.weatherforeca;
+package fvi.at.ua.weatherforeca.ui;
 
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import fvi.at.ua.weatherforeca.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -63,7 +63,7 @@ public class WetherArrayAdapter extends ArrayAdapter<Weather> {
         viewHolder.lowTextView.setText(context.getString(R.string.low_temp, day.minTemp));
         viewHolder.hiTextView.setText(context.getString(R.string.high_temp, day.maxTemp));
         viewHolder.humidityTextView.setText(context.getString(R.string.humidity, day.humidity));
-        
+
         return convertView;
     }
 

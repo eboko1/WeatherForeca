@@ -1,4 +1,4 @@
-package fvi.at.ua.weatherforeca.ui.model;
+package fvi.at.ua.weatherforeca.ui.model.pojo;
 
 import java.sql.Time;
 import java.text.NumberFormat;

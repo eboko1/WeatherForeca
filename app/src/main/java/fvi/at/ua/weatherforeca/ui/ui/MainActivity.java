@@ -1,4 +1,4 @@
-package fvi.at.ua.weatherforeca.ui;
+package fvi.at.ua.weatherforeca.ui.ui;
 
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;

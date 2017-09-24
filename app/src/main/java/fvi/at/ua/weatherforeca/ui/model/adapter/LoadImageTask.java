@@ -22,7 +22,7 @@ import javax.net.ssl.HttpsURLConnection;
 class LoadImageTask extends AsyncTask <String, Void, Bitmap>{
         private ImageView imageView;
         ConcurrentHashMap<String, Bitmap> bitmaps;
-    
+
     public LoadImageTask(ImageView conditionImageView) {
         this.imageView = conditionImageView;
     }

@@ -24,11 +24,11 @@ import fvi.at.ua.weatherforeca.ui.model.pojo.Weather;
  * Created by Vika on 23.09.2017.
  */
 
-public class WetherArrayAdapter extends ArrayAdapter<Weather> {
+public class WeatherArrayAdapter extends ArrayAdapter<Weather> {
     private Map<String, Bitmap> bitmaps = new HashMap<>();
 
 
-    public WetherArrayAdapter(@NonNull Context context, @NonNull List<Weather> forecast) {
+    public WeatherArrayAdapter(@NonNull Context context, @NonNull List<Weather> forecast) {
         super(context, -1, forecast);
     }
 

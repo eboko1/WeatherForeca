@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,15 +28,19 @@ import fvi.at.ua.weatherforeca.ui.model.adapter.WeatherArrayAdapter;
 import fvi.at.ua.weatherforeca.ui.model.pojo.Weather;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String LOG = "MainActivity";
+
     private List<Weather> weatherList;
     private WeatherArrayAdapter weatherArrayAdapter;
     private ListView weatherListView;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.i(LOG, "onCreate ");
 
         //Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText locationEditText = (EditText)findViewById(R.id.locationEditText);
                 URL url = createURL(locationEditText.getText().toString());
                if(url != null){
+                   Log.i(LOG, "onClick url not null  = " + url);
                    dismissKeyboard(locationEditText);
                    GetWeatherTask getLocalWeatherTAsk = new GetWeatherTask();
                    getLocalWeatherTAsk.execute(url);
@@ -66,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void dismissKeyboard(View v) {
+        Log.i(LOG, "dismissKeyboard View= " + v);
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
@@ -73,15 +80,18 @@ public class MainActivity extends AppCompatActivity {
     private URL createURL(String city) {
         String apiKey = getString(R.string.api_key);
         String baseURL = getString(R.string.web_service_url);
+
+        //http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID= apy_key
         try {
-            String urlString = baseURL + URLEncoder.encode(city, "UTF-8") + "&units=imperial&cnt=16&APPID=" + apiKey;
+            String urlString = baseURL + URLEncoder.encode(city, "UTF-8") + "&APPID=" + apiKey;
+            Log.i(LOG, "createURL = " + urlString);
             return new URL(urlString);
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
